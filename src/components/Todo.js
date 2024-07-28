@@ -36,6 +36,13 @@ const Todo = () => {
     setEdit(false);
     setEditIndex(null);
   };
+  const handleDelete = (index) => {
+    const todos = { priority, title, description, dueDate };
+    dispatch({ type: "DELETE", payload: todos, index: index });
+    console.log("this is todos", todos);
+    setEdit(false);
+    setEditIndex(null);
+  };
 
   // }
   return (
@@ -68,7 +75,12 @@ const Todo = () => {
                       >
                         Update
                       </button>
-                      <button className="btn">Delete</button>
+                      <button
+                        className="btn"
+                        onClick={() => handleDelete(index)}
+                      >
+                        Delete
+                      </button>
                     </div>
                     {console.log("this is edit", edit)}
                   </div>
@@ -206,7 +218,15 @@ const reducer = (state, action) => {
       return { ...state, todoList: [...state.todoList] };
     }
     case "DELETE":
-      return { count: state.count - 1 };
+      console.log("this is state.todoList in Delete", state.todoList);
+      console.log("this is action.index", action.index);
+
+      const tempArray = state.todoList.filter(
+        (_, index) => index !== action.index
+      );
+      console.log("this is tempArray", tempArray);
+      // state.todoList = tempArray;
+      return { ...state, todoList: tempArray };
     default:
       throw state;
   }
