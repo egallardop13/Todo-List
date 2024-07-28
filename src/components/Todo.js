@@ -11,6 +11,7 @@ const Todo = () => {
   const [description, setDescription] = useState("");
   const [edit, setEdit] = useState();
   const [editIndex, setEditIndex] = useState();
+  const [create, setCreate] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,12 +22,17 @@ const Todo = () => {
     setPriority("");
     setDescription("");
     setDueDate("");
+    setCreate(false);
   };
+
   // const handleUpdate =  (e) => {
   //     e.preventDefault();
   const handleOnClick = (index) => {
     setEditIndex(index);
     setEdit(true);
+  };
+  const handleCreateClick = () => {
+    setCreate(true);
   };
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -143,60 +149,66 @@ const Todo = () => {
               </div>
             </form>
           ) : null}
+          <div className="todo-actions">
+            <button className="btn" onClick={() => handleCreateClick()}>
+              Create
+            </button>
+          </div>
           {/* <div className='todo'> */}
         </div>
       </div>
       {/* {state.create ? */}
-      <form className="todo-form" onSubmit={handleSubmit}>
-        <div className="todos-list">
-          <div className="todo-title">
-            <h2>Title</h2>
-            <input
-              type="text"
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-              placeholder="Enter Todo Title"
-            />
+      {create ? (
+        <form className="todo-form" onSubmit={handleSubmit}>
+          <div className="todos-list">
+            <div className="todo-title">
+              <h2>Title</h2>
+              <input
+                type="text"
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+                placeholder="Enter Todo Title"
+              />
+            </div>
+            <div className="todo-title">
+              <h2>Priority</h2>
+              <input
+                type="text"
+                onChange={(e) => {
+                  setPriority(e.target.value);
+                }}
+                placeholder="Enter Todo Title"
+              />
+            </div>
+            <div className="todo-title">
+              <h2>Description</h2>
+              <input
+                type="text"
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                placeholder="Enter Todo Description"
+              />
+            </div>
+            <div className="todo-title">
+              <h2>DueDate</h2>
+              <input
+                type="text"
+                onChange={(e) => {
+                  setDueDate(e.target.value);
+                }}
+                placeholder="Enter Todo Description"
+              />
+            </div>
+            <div className="todo-actions">
+              <button className="btn" type="submit">
+                Create
+              </button>
+            </div>
           </div>
-          <div className="todo-title">
-            <h2>Priority</h2>
-            <input
-              type="text"
-              onChange={(e) => {
-                setPriority(e.target.value);
-              }}
-              placeholder="Enter Todo Title"
-            />
-          </div>
-          <div className="todo-title">
-            <h2>Description</h2>
-            <input
-              type="text"
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-              placeholder="Enter Todo Description"
-            />
-          </div>
-          <div className="todo-title">
-            <h2>DueDate</h2>
-            <input
-              type="text"
-              onChange={(e) => {
-                setDueDate(e.target.value);
-              }}
-              placeholder="Enter Todo Description"
-            />
-          </div>
-          <div className="todo-actions">
-            <button className="btn" type="submit">
-              Create
-            </button>
-          </div>
-        </div>
-      </form>
-      {/* : null}  */}
+        </form>
+      ) : null}
 
       {/* </div> */}
       <div className="todo-form"></div>
