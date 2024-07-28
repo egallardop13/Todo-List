@@ -39,11 +39,11 @@ button {
 
 .todos-list {
   margin-top: 3rem;
-  
 }
 
-#editForm{
-  border:1px solid red;
+#editForm {
+  border: 1px solid black;
+  padding: 10px;
 }
 
 .todo {
@@ -61,15 +61,14 @@ button {
 .properties {
   list-style: none;
   display: flex;
+  justify-content: left;
+  gap: 50px;
   justify-items: center;
-  justify-content: space-between;
-  align-items: center;
   background: #f5f9eb;
-  padding: 7px ;
-  margin-left: 10px;
-
+  padding: 10px 20px;
+  margin: 10px;
+  margin-right: 40px;
   font-family: sans-serif;
-  font-size: small;
 }
 
 .close {

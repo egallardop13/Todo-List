@@ -54,113 +54,112 @@ const Todo = () => {
   return (
     <div className="container">
       <div className="container">
-        <div className="todos-list">
-          Todo List
-          {console.log(`this is state.todoList`, state.todoList)}
-          <div className="properties">
-            {" "}
-            # | Todo Title | Todo Priority | Todo Description | Todo DueDate
-          </div>
-          {state.todoList.map((todo, index) => {
-            return (
-              <>
-                <div className="todos-list" key={index}>
+        <label>Todo List</label>
+        {console.log(`this is state.todoList`, state.todoList)}
+        <div className="properties">
+          {" "}
+          <label># Title</label>
+          <label> Priority </label>
+          <label> Description </label>
+          <label> DueDate</label>
+        </div>
+        {state.todoList.map((todo, index) => {
+          return (
+            <>
+              <div className="todos-list" key={index}>
+                <div className="todo">
+                  {" "}
+                  {index + 1} Todo {todo.title}
                   <div className="todo">
-                    {" "}
-                    {index + 1} Todo {todo.title}
-                    <div className="todo">
-                      <div className="todo">{todo.priority}</div>
-                      <div className="todo">{todo.description}</div>
-                      <div className="todo">{todo.dueDate}</div>
-                    </div>
-                    {console.log("this is index", index)}
-                    <div className="todo-actions">
-                      <button
-                        className="btn"
-                        onClick={() => handleOnClick(index)}
-                      >
-                        Update
-                      </button>
-                      <button
-                        className="btn"
-                        onClick={() => handleDelete(index)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                    {console.log("this is edit", edit)}
+                    <div className="todo">{todo.priority}</div>
+                    <div className="todo">{todo.description}</div>
+                    <div className="todo">{todo.dueDate}</div>
                   </div>
-                </div>
-              </>
-            );
-          })}
-          {edit ? (
-            <form className="todos-list" id="editForm" onSubmit={handleUpdate}>
-              <div className="todos-list">
-                <div className="todo-title">
-                  <h2>Title</h2>
-                  <input
-                    type="text"
-                    required
-                    onChange={(e) => {
-                      setTitle(e.target.value);
-                    }}
-                    placeholder={state.todoList[editIndex].title}
-                  />
-                </div>
-                <div className="todo-title">
-                  <h2>Priority</h2>
-                  <input
-                    type="text"
-                    required
-                    onChange={(e) => {
-                      setPriority(e.target.value);
-                    }}
-                    placeholder={state.todoList[editIndex].priority}
-                  />
-                </div>
-                <div className="todo-title">
-                  <h2>Description</h2>
-                  <input
-                    type="text"
-                    required
-                    onChange={(e) => {
-                      setDescription(e.target.value);
-                    }}
-                    placeholder={state.todoList[editIndex].description}
-                  />
-                </div>
-                <div className="todo-title">
-                  <h2>DueDate</h2>
-                  <input
-                    type="text"
-                    required
-                    onChange={(e) => {
-                      setDueDate(e.target.value);
-                    }}
-                    placeholder={state.todoList[editIndex].dueDate}
-                  />
-                </div>
-                <div className="todo-actions">
-                  <button className="btn" type="submit">
-                    Edit
-                  </button>
+                  {console.log("this is index", index)}
+                  <div className="todo-actions">
+                    <button
+                      className="btn"
+                      onClick={() => handleOnClick(index)}
+                    >
+                      Update
+                    </button>
+                    <button className="btn" onClick={() => handleDelete(index)}>
+                      Delete
+                    </button>
+                  </div>
+                  {console.log("this is edit", edit)}
                 </div>
               </div>
-            </form>
-          ) : null}
-          <div className="todo-actions">
-            <button className="btn" onClick={() => handleCreateClick()}>
-              Create
-            </button>
-          </div>
-          {/* <div className='todo'> */}
+            </>
+          );
+        })}
+        {edit ? (
+          <form className="todos-list" id="editForm" onSubmit={handleUpdate}>
+            <div className="todos-list">
+              <div className="todo-title">
+                <h2>Title</h2>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
+                  placeholder={state.todoList[editIndex].title}
+                />
+              </div>
+              <div className="todo-title">
+                <h2>Priority</h2>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => {
+                    setPriority(e.target.value);
+                  }}
+                  placeholder={state.todoList[editIndex].priority}
+                />
+              </div>
+              <div className="todo-title">
+                <h2>Description</h2>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                  placeholder={state.todoList[editIndex].description}
+                />
+              </div>
+              <div className="todo-title">
+                <h2>DueDate</h2>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => {
+                    setDueDate(e.target.value);
+                  }}
+                  placeholder={state.todoList[editIndex].dueDate}
+                />
+              </div>
+              <div className="todo-actions">
+                <button className="btn" type="submit">
+                  Edit
+                </button>
+              </div>
+            </div>
+          </form>
+        ) : null}
+        <div className="todo-actions">
+          <button className="btn" onClick={() => handleCreateClick()}>
+            Create
+          </button>
         </div>
+        {/* <div className='todo'> */}
       </div>
+
       {/* {state.create ? */}
       {create ? (
-        <form className="todo-form" onSubmit={handleSubmit}>
-          <div className="todos-list">
+        <form className="container" onSubmit={handleSubmit}>
+          <div className="todo">
             <div className="todo-title">
               <h2>Title</h2>
               <input
